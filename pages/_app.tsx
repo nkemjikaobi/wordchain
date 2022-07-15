@@ -1,8 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import React from 'react';
+import BoardState from '@context/board/BoardState';
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+/**
+ * App wrapper for the whole application
+ * @param {NextComponentType<NextPageContext, any, {}>} Component
+ * @param {any} pageProps
+ * @return {AppProps}
+ */
+const MyApp = ({ Component, pageProps }: AppProps) => {
+	return (
+		<BoardState>
+			<Component {...pageProps} />
+		</BoardState>
+	);
+};
 
-export default MyApp
+export default MyApp;
