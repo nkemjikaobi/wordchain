@@ -1,12 +1,8 @@
 import useBoard from '@hooks/useBoard';
 import React from 'react';
 
-const Key = ({ keyVal, bigKey }: any) => {
-	const {
-		onDelete,
-		onEnter,
-		onSelectLetter,
-	} = useBoard();
+const Key = ({ keyVal, bigKey, disabled }: any) => {
+	const { onDelete, onEnter, onSelectLetter } = useBoard();
 	const selectLetter = () => {
 		if (keyVal === 'ENTER') {
 			onEnter();
@@ -16,10 +12,11 @@ const Key = ({ keyVal, bigKey }: any) => {
 			onSelectLetter(keyVal);
 		}
 	};
+
 	return (
 		<div
 			className={`w-[50px] h-[70px] m-[5px] flex items-center justify-center rounded-[4px] place-items-center text-[20px] bg-gray-500 text-white cursor-pointer ${
-				bigKey ? 'w-[100px]' : ''
+				bigKey ? 'w-[100px]' : disabled && 'bg-[#3a393c]'
 			}`}
 			onClick={selectLetter}
 		>

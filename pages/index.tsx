@@ -1,9 +1,18 @@
+import GameOver from '@components/GameOver/GameOver';
+import useBoard from '@hooks/useBoard';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import Board from '../src/components/Board/Board';
 import Keyboard from '../src/components/Keyboard/Keyboard';
 
 const Home: NextPage = () => {
+	const { generateWords, gameOver } = useBoard();
+
+	useEffect(() => {
+		generateWords();
+	}, []);
+
 	return (
 		<div>
 			<Head>
@@ -18,7 +27,7 @@ const Home: NextPage = () => {
 				</nav>
 				<div className='w-screen flex items-center pt-[50px] flex-col h-[calc(100vh_-_170px)]'>
 					<Board />
-					<Keyboard />
+					{gameOver.gameOver ? <GameOver /> : <Keyboard />}
 				</div>
 			</main>
 		</div>

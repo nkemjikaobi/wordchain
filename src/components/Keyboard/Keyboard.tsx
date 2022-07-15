@@ -7,7 +7,8 @@ const Keyboard = () => {
 	const keys2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
 	const keys3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 
-	const { onEnter, onDelete, onSelectLetter, currentAttempt } = useBoard();
+	const { onEnter, onDelete, onSelectLetter, currentAttempt, disabledLetters } =
+		useBoard();
 
 	const handleKeyboard = useCallback(
 		(event: any) => {
@@ -48,18 +49,36 @@ const Keyboard = () => {
 		<div className='w-[700px] h-[300px] mt-[60px]' onKeyDown={handleKeyboard}>
 			<div className=' flex justify-center m-[5px]'>
 				{keys1.map((key, index) => {
-					return <Key key={index} keyVal={key} />;
+					return (
+						<Key
+							key={index}
+							keyVal={key}
+							disabled={disabledLetters.includes(key)}
+						/>
+					);
 				})}
 			</div>
 			<div className=' flex justify-center m-[5px]'>
 				{keys2.map((key, index) => {
-					return <Key key={index} keyVal={key} />;
+					return (
+						<Key
+							key={index}
+							keyVal={key}
+							disabled={disabledLetters.includes(key)}
+						/>
+					);
 				})}
 			</div>
 			<div className=' flex justify-center m-[5px]'>
 				<Key keyVal={'ENTER'} bigKey />
 				{keys3.map((key, index) => {
-					return <Key key={index} keyVal={key} />;
+					return (
+						<Key
+							key={index}
+							keyVal={key}
+							disabled={disabledLetters.includes(key)}
+						/>
+					);
 				})}
 				<Key keyVal={'DELETE'} bigKey />
 			</div>

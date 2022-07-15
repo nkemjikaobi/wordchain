@@ -14,10 +14,19 @@ const useBoard = () => {
 		onEnter,
 		onDelete,
 		onSelectLetter,
+		updateWordSet,
+		generateWords,
+		updateDisabledLetters,
+		updateGameOver,
+		updateCorrectWord,
 
 		//state variables
 		board,
-		currentAttempt
+		currentAttempt,
+		correctWord,
+		wordSet,
+		disabledLetters,
+		gameOver,
 	} = useContext(BoardContext);
 
 	return {
@@ -27,10 +36,19 @@ const useBoard = () => {
 		onDelete,
 		onEnter,
 		onSelectLetter,
+		updateWordSet,
+		generateWords,
+		updateDisabledLetters,
+		updateGameOver,
+		updateCorrectWord,
 
 		//state variables
 		board,
-		currentAttempt
+		currentAttempt,
+		correctWord,
+		wordSet,
+		disabledLetters,
+		gameOver,
 	};
 };
 

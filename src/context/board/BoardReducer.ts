@@ -1,4 +1,11 @@
-import { UPDATE_BOARD, UPDATE_CURRENT_ATTEMPT } from '../types';
+import {
+	UPDATE_BOARD,
+	UPDATE_CURRENT_ATTEMPT,
+	UPDATE_DISABLED_LETTERS,
+	UPDATE_GAME_OVER,
+	UPDATE_CORRECT_WORD,
+	UPDATE_WORD_SET,
+} from '../types';
 
 const AuthReducer = (state: any, action: any) => {
 	switch (action.type) {
@@ -11,6 +18,26 @@ const AuthReducer = (state: any, action: any) => {
 			return {
 				...state,
 				currentAttempt: action.payload,
+			};
+		case UPDATE_WORD_SET:
+			return {
+				...state,
+				wordSet: action.payload,
+			};
+		case UPDATE_DISABLED_LETTERS:
+			return {
+				...state,
+				disabledLetters: [...state.disabledLetters, action.payload],
+			};
+		case UPDATE_GAME_OVER:
+			return {
+				...state,
+				gameOver: action.payload,
+			};
+		case UPDATE_CORRECT_WORD:
+			return {
+				...state,
+				correctWord: action.payload,
 			};
 		default:
 			return state;
