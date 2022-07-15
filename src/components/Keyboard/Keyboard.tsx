@@ -1,9 +1,70 @@
-import React from 'react'
+import Key from '@components/Key/Key';
+import useBoard from '@hooks/useBoard';
+import React, { useCallback, useEffect } from 'react';
 
 const Keyboard = () => {
-  return (
-    <div>Keyboard</div>
-  )
-}
+	const keys1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+	const keys2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+	const keys3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 
-export default Keyboard
+	const { onEnter, onDelete, onSelectLetter, currentAttempt } = useBoard();
+
+	const handleKeyboard = useCallback(
+		(event: any) => {
+			// if (gameOver.gameOver) return;
+			if (event.key === 'Enter') {
+				onEnter();
+			} else if (event.key === 'Backspace') {
+				onDelete();
+			} else {
+				keys1.forEach(key => {
+					if (event.key.toLowerCase() === key.toLowerCase()) {
+						onSelectLetter(key);
+					}
+				});
+				keys2.forEach(key => {
+					if (event.key.toLowerCase() === key.toLowerCase()) {
+						onSelectLetter(key);
+					}
+				});
+				keys3.forEach(key => {
+					if (event.key.toLowerCase() === key.toLowerCase()) {
+						onSelectLetter(key);
+					}
+				});
+			}
+		},
+		[currentAttempt]
+	);
+	useEffect(() => {
+		document.addEventListener('keydown', handleKeyboard);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyboard);
+		};
+	}, [handleKeyboard]);
+
+	return (
+		<div className='w-[700px] h-[300px] mt-[60px]' onKeyDown={handleKeyboard}>
+			<div className=' flex justify-center m-[5px]'>
+				{keys1.map((key, index) => {
+					return <Key key={index} keyVal={key} />;
+				})}
+			</div>
+			<div className=' flex justify-center m-[5px]'>
+				{keys2.map((key, index) => {
+					return <Key key={index} keyVal={key} />;
+				})}
+			</div>
+			<div className=' flex justify-center m-[5px]'>
+				<Key keyVal={'ENTER'} bigKey />
+				{keys3.map((key, index) => {
+					return <Key key={index} keyVal={key} />;
+				})}
+				<Key keyVal={'DELETE'} bigKey />
+			</div>
+		</div>
+	);
+};
+
+export default Keyboard;

@@ -10,17 +10,27 @@ const useBoard = () => {
 	const {
 		//methods
 		updateBoard,
+		updateCurrentAttempt,
+		onEnter,
+		onDelete,
+		onSelectLetter,
 
 		//state variables
 		board,
+		currentAttempt
 	} = useContext(BoardContext);
 
 	return {
 		//methods
 		updateBoard,
+		updateCurrentAttempt,
+		onDelete,
+		onEnter,
+		onSelectLetter,
 
 		//state variables
 		board,
+		currentAttempt
 	};
 };
 

@@ -16,8 +16,10 @@ const Home: NextPage = () => {
 				<nav className='h-[60px] w-full m-0 border-b-gray-500 border border-r-0 border-l-0 border-t-0 grid place-items-center'>
 					<h1 className='m-0 text-white text-[45px]'>WordChain</h1>
 				</nav>
-				<Board />
-				<Keyboard />
+				<div className='w-screen flex items-center pt-[50px] flex-col h-[calc(100vh_-_170px)]'>
+					<Board />
+					<Keyboard />
+				</div>
 			</main>
 		</div>
 	);
